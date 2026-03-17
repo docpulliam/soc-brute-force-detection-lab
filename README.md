@@ -7,6 +7,13 @@ The lab demonstrates how authentication logs can be ingested into a SIEM platfor
 
 ---
 
+## Key Findings
+
+- Detected repeated failed login attempts from a single source IP
+- Identified brute-force behavior targeting multiple user accounts
+- Observed abnormal authentication volume exceeding normal thresholds
+- Successfully simulated and detected attack patterns in real time
+
 ## Project Architecture
 
 Python Attack Simulator
