@@ -1,159 +1,116 @@
-SOC Brute Force Detection Lab
-Overview
+# SOC Brute Force Detection Lab
 
-This project simulates a Security Operations Center (SOC) investigation workflow by detecting and analyzing a simulated brute-force authentication attack using Splunk SIEM and Python.
+## Overview
+This project simulates a **Security Operations Center (SOC) investigation workflow** by detecting and analyzing a simulated brute-force authentication attack using **Splunk SIEM and Python**.
 
-The lab demonstrates how authentication logs can be ingested into a SIEM platform, analyzed using Splunk Search Processing Language (SPL), and visualized in a security monitoring dashboard to identify suspicious login activity.
+The lab demonstrates how authentication logs can be ingested into a SIEM platform, analyzed using **Splunk Search Processing Language (SPL)**, and visualized in a **security monitoring dashboard**.
 
-A Python script generates simulated authentication events that mimic real-world brute-force login attempts, allowing the detection logic to be tested in a controlled environment.
+---
+
+## Project Architecture
 
 Python Attack Simulator
-        │
-        ▼
+│
+▼
 Authentication Log File (CSV)
-        │
-        ▼
+│
+▼
 Splunk Log Ingestion
-        │
-        ▼
+│
+▼
 Detection Queries (SPL)
-        │
-        ▼
+│
+▼
 SOC Monitoring Dashboard
-        │
-        ▼
+│
+▼
 Security Incident Investigation
 
-Technologies Used
 
-Splunk Enterprise (SIEM)
+---
 
-Python 3
+## Technologies Used
 
-Splunk Search Processing Language (SPL)
+- Splunk Enterprise (SIEM)
+- Python 3
+- Splunk SPL
+- CSV Log Dataset
 
-CSV Log Dataset
+---
 
-Security Monitoring Dashboard
+## Detection Logic
 
-Detection Logic
+The detection rule identifies suspicious authentication behavior by detecting repeated failed login attempts.
 
-The detection rule identifies suspicious authentication behavior by detecting repeated failed login attempts from the same source IP or targeting the same user account.
+### Example SPL Query
 
-Example SPL detection query:
-
+```spl
 index=soc_lab
 | stats count by username, src_ip
 | where count > 5
 
-This query highlights potential brute-force attempts by identifying abnormal login volumes.
-
 Project Components
-1. Python Attack Simulator
+Python Attack Simulator
 
-A Python script generates simulated authentication events to replicate a brute-force attack.
-
-The script continuously writes login attempts to a CSV log file that is monitored by Splunk.
+Generates simulated authentication events to replicate a brute-force attack.
 
 attack_simulator.py
 
 Authentication Log Dataset
 
-The simulated attack produces authentication logs with fields such as:
+Contains simulated login activity including:
 
-Timestamp
+Timestamp, Username, Source IP, Login Status, auth_attack_log.csv
 
-Username
+Logs are ingested into: soc_lab
 
-Source IP
+SOC Monitoring Dashboard
 
-Login Status (success/failure)
-
-auth_attack_log.csv
-
-3. Splunk Log Ingestion
-
-Splunk monitors the authentication log file and indexes the events into the following index:
-
-soc_lab
-
-4. Detection Queries
-
-Custom SPL queries were created to identify suspicious login patterns such as:
-
-Multiple failed login attempts
-
-High authentication volume from a single IP
-
-Potential brute-force behavior
-
-5. SOC Monitoring Dashboard
-
-A Splunk dashboard was created to visualize:
+Dashboard visualizes:
 
 Failed login spikes
 
 Source IP activity
 
-Authentication attempts by user
-
-This simulates the type of monitoring interface used by Security Operations Centers.
+Authentication attempts
 
 Investigation Workflow
 
-Python simulator generates repeated failed login attempts.
+Python script generates login attempts
 
-Authentication logs are written to a monitored CSV file.
+Logs are ingested into Splunk
 
-Splunk ingests the log data in real time.
+SPL queries detect suspicious activity
 
-Detection queries identify abnormal login patterns.
+Dashboard visualizes attack patterns
 
-Dashboard panels visualize suspicious activity.
+Incident report is created
 
-An incident investigation report is generated.
+Screenshots
+Dashboard
+
+Detection Query
+
+Files in Repository:
+attack_simulator.py
+auth_attack_log.csv
+soc_incident_report.pdf
+soc_monitoring_lab_report.pdf
 
 Skills Demonstrated
 
-SIEM configuration and monitoring
+SIEM monitoring
 
-Log ingestion and parsing
+Log analysis
 
-Security event detection
+SPL query writing
 
-Splunk SPL query development
+Detection engineering
 
 Security dashboard creation
 
-Attack simulation with Python
-
-Incident investigation documentation
-
-Potential Security Use Cases
-
-This detection approach can help identify:
-
-Brute-force login attempts
-
-Credential stuffing attacks
-
-Unauthorized access attempts
-
-Suspicious authentication behavior
-
-Future Improvements
-
-Integrate threat intelligence lookups for suspicious IPs
-
-Automate alert notifications
-
-Expand detection rules for additional attack patterns
-
-Simulate additional attack types (phishing, lateral movement)
+Python automation
 
 Author
 
 Doc Pulliam
-
-Cybersecurity & Security Automation Enthusiast
-Python | SIEM | Detection Engineering | Security Monitoring
