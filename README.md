@@ -14,6 +14,17 @@ The lab demonstrates how authentication logs can be ingested into a SIEM platfor
 - Observed abnormal authentication volume exceeding normal thresholds
 - Successfully simulated and detected attack patterns in real time
 
+## Screenshots
+
+### Dashboard Overview
+![Dashboard](dashboard_overview.png)
+
+### Detection Query Results
+![Detection](detection_query_results.png)
+
+### Attack Log Events
+![Logs](attack_log_events.png)
+
 ## Project Architecture
 
 Python Attack Simulator
@@ -93,10 +104,6 @@ Dashboard visualizes attack patterns
 
 Incident report is created
 
-Screenshots
-Dashboard
-
-Detection Query
 
 Files in Repository:
 attack_simulator.py
